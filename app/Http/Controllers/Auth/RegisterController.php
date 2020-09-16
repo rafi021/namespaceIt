@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Applicant;
+use App\Models\Employer;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -49,14 +51,13 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        dd($data);
-
-        return Validator::make($data, [
+        $validatedData = Validator::make($data, [
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
+        return $validatedData;
     }
 
     /**
@@ -67,8 +68,8 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-
-        return User::create([
+       
+        $user_id = User::insertGetId([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
             'email' => $data['email'],
@@ -76,5 +77,21 @@ class RegisterController extends Controller
         ]);
 
         $role_id = $data['role_id'];
+
+        if($role_id == 2){
+            // If User is an Employer then fill the employer table 
+            Employer::create([
+                'user_id' => $user_id,
+                'role_id' => $role_id,
+            ]);
+        }elseif ($role_id == 3) {
+            // If User is an Applicant then fill the applicant table
+            Applicant::create([
+                'user_id' => $user_id,
+                'role_id' => $role_id,
+            ]);
+        }
+        // finally return user info
+        return User::find($user_id);
     }
 }

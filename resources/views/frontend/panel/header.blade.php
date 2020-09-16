@@ -18,12 +18,15 @@
             <!-- Offcanvas Toggle End -->
 
             <!-- Header Links Start -->
+            @guest
             <div class="header-links col-auto order-lg-3">
                 <a href="#" data-toggle="modal" data-target="#loginSignupModal" data-target-sub="#login">Login</a>
                 <span>or</span>
                 <a href="#" data-toggle="modal" data-target="#loginSignupModal" data-target-sub="#signup">Sign up</a>
+                {{-- <a href="{{ route('register') }}">Sign up</a> --}}
             </div><!-- Header Links End -->
-
+            @endguest
+           
             <!-- Header Menu Start -->
             <nav id="main-menu" class="main-menu col-lg-auto order-lg-2">
                 <ul>
@@ -61,6 +64,20 @@
                         </ul>
                     </li>
                     <li><a href="contact.html">Contact us</a></li>
+                    @auth
+                    <li><a href="#">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</a>
+                        <ul class="sub-menu">
+                            <li><a href="company-list.html">Profile</a></li>
+                            <li><a href="company-single.html">Company Single</a></li>
+                            <li>
+                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> {{ __('Logout') }}</a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                    @endauth
                 </ul>
             </nav>
             <!-- Header Menu End -->
