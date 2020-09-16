@@ -47,11 +47,20 @@
                         </form>
                     </div>
                     <div class="tab-pane fade" id="signup">
-                        <form>
+                        <form action="{{ route('register') }}" method="POST">
+                            @csrf 
                             <div class="row mb-n3">
-                                <div class="col-12 mb-3"><input type="text" placeholder="Your Name"></div>
-                                <div class="col-12 mb-3"><input type="email" placeholder="Your Email Address"></div>
-                                <div class="col-12 mb-3"><input type="password" placeholder="Choose a Password"></div>
+                                <div class="col-12 mb-3"><input type="text" placeholder="First Name" name="frist_name"></div>
+                                <div class="col-12 mb-3"><input type="text" placeholder="Last Name" name="last_name"></div>
+                                <div class="col-12 mb-3"><input type="email" placeholder="Your Email Address" name="email"></div>
+                                <div class="col-12 mb-3"><input type="password" placeholder="Choose a Password" name="password"></div>
+                                <div class="col-12 mb-3">
+                                    <label for="">Select Profile</label>
+                                    <select name="role_id">
+                                        <option value="2">Employer</option>
+                                        <option value="3">Applicant</option>
+                                    </select>
+                                </div>
                                 <div class="col-12 mb-3"><input class="btn btn-primary w-100" type="submit" value="Sign Up"></div>
                             </div>
                             <div class="row mt-4">
