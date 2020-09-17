@@ -27,8 +27,8 @@ class JobsFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => User::all()->random()->id,
-            'employer_id' => Employer::all()->random()->id,
+            'user_id' => 2,
+            'employer_id' => 2,
             'category_id' => JobCategory::all()->random()->id,
             'job_title' => $name = $this->faker->text(),
             'job_slug' => Str::slug($name).Str::random(5),

@@ -40,4 +40,18 @@ class Jobs extends Model
         return 'job_slug';
     }
 
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
+
+    public function jobapplications()
+    {
+        return $this->hasMany(JobApplication::class, 'jobs_id', 'id');
+    }
+
+    
+
+
+
 }

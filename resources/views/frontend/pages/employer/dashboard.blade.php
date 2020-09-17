@@ -21,18 +21,44 @@
                         <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
+                            <th scope="col">Job Title</th>
+                            <th scope="col">Applicant Name</th>
+                            <th scope="col">Applicant Email</th>
+                            <th scope="col">Applicant Resume</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
+                            {{-- {{ $job_posts->jobapplications }} --}}
+                            @foreach ($job_posts as $job)
+                            <tr>
+                                <th scope="row">{{ $loop->index+1 }}</th>
+                                <td>{{ $job->position }}</td>
+                                <td>
+                                    @foreach ($job->jobapplications as $application)
+                                    @foreach ($application->users as $user)
+                                        <span>{{ $loop->index+1 }}. {{ $user->first_name.' '. $user->last_name }}</span>
+                                        <br>
+                                    @endforeach
+                                    @endforeach
+                                </td>
+                                <td>
+                                    @foreach ($job->jobapplications as $application)
+                                        @foreach ($application->users as $user)
+                                            <span>{{ $loop->index+1 }}. {{ $user->email }}</span>
+                                            <br>
+                                        @endforeach
+                                    @endforeach
+                                </td>
+                                <td>
+                                    @foreach ($job->jobapplications as $application)
+                                        @foreach ($application->applicant as $applicant)
+                                            <span>{{ $loop->index+1 }}.{{ $applicant->resume_file }}</span>
+                                            <br>
+                                        @endforeach
+                                    @endforeach
+                                </td>
+                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

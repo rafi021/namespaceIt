@@ -6,9 +6,11 @@ use App\Models\Admin;
 use App\Models\Applicant;
 use App\Models\Employer;
 use App\Models\User;
+use Carbon\Carbon;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str; 
 
 class UserSeeder extends Seeder
 {
@@ -46,6 +48,15 @@ class UserSeeder extends Seeder
         ]);
         Employer::insert([
             'user_id' => $employer_user_id,
+            'business_name' => "ABC Company",
+            'slug' => Str::slug('ABC Company').Str::random(5),
+            'company_address' => "ABC Company, Dhaka, BD",
+            'phone' => "02-555-5555",
+            'website' => "www.abc.com",
+            'logo' => 'logo/logo.jpg',
+            'cover_photo' => 'cover_photo/cover_photo.jpg',
+            'description' => 'its a demo company',
+            'created_at' => Carbon::now(),
         ]);
         // Special Applicant Login Credential
         $applicant_user_id = User::insertGetId([
@@ -59,6 +70,13 @@ class UserSeeder extends Seeder
 
         Applicant::insert([
             'user_id' => $applicant_user_id,
+            'address' => 'Dhaka, BD',
+            'gender' => 'Male',
+            'experience' => '10',
+            'cover_letter' => 'applicant/resume_file/cover_letter.pdf',
+            'resume_file' => 'applicant/resume_file/3.pdf',
+            'profile_photo' => 'avater/profile_photo.jpg',
+            'created_at' => Carbon::now(),
         ]);
 
         $seedCount = (int) $this->command->ask('How many seeds would you like to generate ?', 20);

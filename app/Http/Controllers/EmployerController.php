@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Employer;
 use App\Models\JobCategory;
+use App\Models\Jobs;
+use Database\Seeders\JobApplicationSeeder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EmployerController extends Controller
 {
@@ -92,8 +95,11 @@ class EmployerController extends Controller
     }
 
     public function dashboard()
-    {
-        return view('frontend.pages.employer.dashboard');
+    {  
+        $job_posts = Jobs::where('employer_id', Auth::user()->id)->latest()->with(['jobapplications'])->get();
+        return view('frontend.pages.employer.dashboard',[
+            'job_posts' => $job_posts,
+        ]);
     }
 
     public function profile()
