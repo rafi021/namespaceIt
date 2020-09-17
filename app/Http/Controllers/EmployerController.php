@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Jobs;
+use App\Models\Employer;
 use Illuminate\Http\Request;
 
-class JobsController extends Controller
+class EmployerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,10 +13,10 @@ class JobsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-        $job_posts = Jobs::with(['employer'])->get();
-        return view('frontend.pages.job-list',[
-            'job_posts' => $job_posts,
+    {
+        $all_employer = Employer::with('jobs')->withCount(['jobs'])->get();
+        return view('frontend.pages.employer-list',[
+            'employers' => $all_employer,
         ]);
     }
 
@@ -44,21 +44,21 @@ class JobsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Jobs  $jobs
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Jobs $jobs)
+    public function show(Employer $employer)
     {
-        return view('frontend.pages.single-job',compact('jobs'));
+        return view('frontend.pages.single-employer', compact('employer'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Jobs  $jobs
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Jobs $jobs)
+    public function edit($id)
     {
         //
     }
@@ -67,10 +67,10 @@ class JobsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Jobs  $jobs
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Jobs $jobs)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -78,10 +78,10 @@ class JobsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Jobs  $jobs
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Jobs $jobs)
+    public function destroy($id)
     {
         //
     }

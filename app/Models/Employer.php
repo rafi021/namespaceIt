@@ -22,4 +22,14 @@ class Employer extends Model
         'cover_photo',
         'description',
     ];
+
+    public function jobs(){
+        return $this->hasMany(Jobs::class);
+    }
+
+    // route show slug
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }

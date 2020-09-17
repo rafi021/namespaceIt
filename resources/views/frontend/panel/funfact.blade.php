@@ -4,28 +4,28 @@
 
             <!-- Funfact Start -->
             <div class="funfact col-md-3 col-sm-6 col-12">
-                <span class="counter">1354</span>
+                <span class="counter">{{ $job_post_count }}</span>
                 <span class="title">Job Post</span>
             </div>
             <!-- Funfact Start -->
 
             <!-- Funfact Start -->
             <div class="funfact col-md-3 col-sm-6 col-12">
-                <span class="counter">1741</span>
+                <span class="counter">{{ $members_count }}</span>
                 <span class="title">Members</span>
             </div>
             <!-- Funfact Start -->
 
             <!-- Funfact Start -->
             <div class="funfact col-md-3 col-sm-6 col-12">
-                <span class="counter">1204</span>
+                <span class="counter">{{ $resume_count }}</span>
                 <span class="title">Resume</span>
             </div>
             <!-- Funfact Start -->
 
             <!-- Funfact Start -->
             <div class="funfact col-md-3 col-sm-6 col-12">
-                <span class="counter">142</span>
+                <span class="counter">{{ $employer_count }}</span>
                 <span class="title">Company</span>
             </div>
             <!-- Funfact Start -->

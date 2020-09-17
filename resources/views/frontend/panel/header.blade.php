@@ -30,24 +30,11 @@
             <!-- Header Menu Start -->
             <nav id="main-menu" class="main-menu col-lg-auto order-lg-2">
                 <ul>
-                    <li class="has-children"><a href="index.html">Home</a>
-                        <ul class="sub-menu">
-                            <li><a href="index.html">Home One</a></li>
-                            <li><a href="index-2.html">Home Two</a></li>
-                        </ul>
+                    <li class="has-children"><a href="{{ route('home') }}">Home</a>
                     </li>
-                    <li class="has-children"><a href="job-list.html">Jobs</a>
-                        <ul class="sub-menu">
-                            <li><a href="job-list.html">Job List</a></li>
-                            <li><a href="job-single.html">Job Single</a></li>
-                        </ul>
+                    <li class="has-children"><a href="{{ route('job.index') }}">Jobs</a>
                     </li>
-                    <li><a href="company-list.html">Company</a>
-                        <ul class="sub-menu">
-                            <li><a href="company-list.html">Company List</a></li>
-                            <li><a href="company-single.html">Company Single</a></li>
-                            <li><a href="create-job.html">Create Job</a></li>
-                        </ul>
+                    <li><a href="{{ route('employer.index') }}">Company</a>
                     </li>
                     <li><a href="#">Pages</a>
                         <ul class="sub-menu">
@@ -67,8 +54,7 @@
                     @auth
                     <li><a href="#">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</a>
                         <ul class="sub-menu">
-                            <li><a href="company-list.html">Profile</a></li>
-                            <li><a href="company-single.html">Company Single</a></li>
+                            <li><a href="{{ route('employer.index') }}">Profile</a></li>
                             <li>
                                 <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> {{ __('Logout') }}</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

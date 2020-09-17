@@ -24,4 +24,16 @@ class Jobs extends Model
         'status',
         'last_date',
     ];
+
+    // One to Many Relationship inverse
+    public function employer(){
+        return $this->belongsTo(Employer::class);
+    }
+
+    // route show slug
+    public function getRouteKeyName()
+    {
+        return 'job_slug';
+    }
+
 }

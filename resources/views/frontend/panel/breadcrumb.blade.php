@@ -4,8 +4,13 @@
         <div class="page-heading-content text-center">
             <h3 class="title">Browse Jobs</h3>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item active">Jobs</li>
+                <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                @if ($menu)
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}">{{$menu}}</a></li>
+                @endif
+                @if($submenu)
+                    <li class="breadcrumb-item active">{{ $submenu }}</li>
+                @endif
             </ol>
         </div>
     </div>
