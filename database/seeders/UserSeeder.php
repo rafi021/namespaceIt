@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Admin;
+use App\Models\Applicant;
+use App\Models\Employer;
 use App\Models\User;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Seeder;
@@ -34,7 +36,7 @@ class UserSeeder extends Seeder
 
 
         // Special Employer Login Credential
-        User::insertGetId([
+        $employer_user_id = User::insertGetId([
             'role_id' => 2,
             'first_name' => 'Job',
             'last_name' => 'Employer',
@@ -42,14 +44,21 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => Hash::make('1234'),
         ]);
+        Employer::insert([
+            'user_id' => $employer_user_id,
+        ]);
         // Special Applicant Login Credential
-        User::insertGetId([
+        $applicant_user_id = User::insertGetId([
             'role_id' => 3,
             'first_name' => 'Job',
             'last_name' => 'Applicant',
             'email' => 'applicant@login.com',
             'email_verified_at' => now(),
             'password' => Hash::make('1234'),
+        ]);
+
+        Applicant::insert([
+            'user_id' => $applicant_user_id,
         ]);
 
         $seedCount = (int) $this->command->ask('How many seeds would you like to generate ?', 20);

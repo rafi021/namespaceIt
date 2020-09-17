@@ -43,9 +43,10 @@ class JobsController extends Controller
     public function store(JobStoreRequest $request)
     {
         //dd($request->all());
+        //dd(Auth::user()->id, Employer::where('user_id', Auth::user()->id)->first());
         Jobs::create([
-            'user_id' => Auth::id(),
-            'employer_id' => Employer::where('user_id', Auth::id())->id,
+            'user_id' => $user_id = Auth::user()->id,
+            'employer_id' => Employer::where('user_id', $user_id)->first()->id,
             'category_id' => $request->input('category_id'),
             'job_title' => $title = $request->input('job_title'),
             'job_slug' => Str::slug($title) . Str::random(5),

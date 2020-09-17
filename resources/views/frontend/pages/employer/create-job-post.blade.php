@@ -13,11 +13,11 @@
     <div class="section section-padding">
         <div class="container">
             <div class="row">
+                <div class="create-job-form col-lg-10 mx-auto">
 
                 {{-- Laravel 7 Blade Component Feature --}}
                 <x-alert :type="session('type')" :message="session('profile_status')"/>
-
-                <div class="create-job-form col-lg-10 mx-auto">
+                
                     <form action="{{ route('jobs.store') }}" method="POST">
                         @csrf
                         <div class="row mb-3">

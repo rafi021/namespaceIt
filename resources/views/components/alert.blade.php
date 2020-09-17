@@ -5,7 +5,7 @@
             <div class="col-sm-12">
                 <div class="alert alert-{{ $type }}">
                     <button type="button" class="close" data-dismiss='alert' aria-label="close">
-                        <i class="fa fa-close">close</i>
+                        <i class="fa fa-close"></i>
                     </button>
                     <span>{{ $message }}</span>
                 </div>
