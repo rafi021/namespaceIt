@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\JobStoreRequest;
+use App\Models\Employer;
 use App\Models\Jobs;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class JobsController extends Controller
 {
@@ -36,10 +40,32 @@ class JobsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(JobStoreRequest $request)
     {
-        // dd($request->all());
-        
+        //dd($request->all());
+        Jobs::create([
+            'user_id' => Auth::id(),
+            'employer_id' => Employer::where('user_id', Auth::id())->id,
+            'category_id' => $request->input('category_id'),
+            'job_title' => $title = $request->input('job_title'),
+            'job_slug' => Str::slug($title) . Str::random(5),
+            'education_required' => $request->input('education_required'),  
+            'experience_required' => $request->input('experience_required'),  
+            'job_description' => $request->input('job_description'),  
+            'gender' => $request->input('gender'),  
+            'position' => $request->input('job_title'),  
+            'vacancy' => $request->input('vacancy'),  
+            'salary' => $request->input('salary'),  
+            'location' => $request->input('location'),  
+            'country' => $request->input('country'),  
+            'job_type' => $request->input('job_type'),  
+            'last_date' => $request->input('last_date'),  
+        ]);
+
+        return redirect()->back()->with([
+            'type' => 'success',
+            'profile_status' => 'Successfully created new job post.!!!',
+        ]);
     }
 
     /**

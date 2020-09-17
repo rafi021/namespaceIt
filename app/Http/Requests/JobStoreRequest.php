@@ -13,7 +13,7 @@ class JobStoreRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class JobStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'job_title' => 'required',
+            'job_description' =>'required',
+            'salary' =>'required',
+            'last_date' =>'required',
         ];
     }
 }

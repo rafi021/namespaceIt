@@ -13,14 +13,20 @@
     <div class="section section-padding">
         <div class="container">
             <div class="row">
+
+                {{-- Laravel 7 Blade Component Feature --}}
+                <x-alert :type="session('type')" :message="session('profile_status')"/>
+
                 <div class="create-job-form col-lg-10 mx-auto">
                     <form action="{{ route('jobs.store') }}" method="POST">
                         @csrf
                         <div class="row mb-3">
                             <div class="col-md-6 col-12 mb-3">
+                                <span  style="color:red"> *</span>
                                 <x-inputbox type="text" labelName="Job Title" placeholderName="Enter Job Title" varName="job_title" dbvalue=""/>
                             </div>
                             <div class="col-md-6 col-12 mb-3">
+                                <span  style="color:red"> *</span>
                                 <x-inputbox type="date" labelName="Application Deadline" placeholderName="Enter Application Deadline" varName="last_date" dbvalue=""/>
                             </div>
                             <div class="col-md-6 col-12 mb-3">
@@ -43,6 +49,7 @@
                                 </select>
                             </div>
                             <div class="col-md-6 col-12 mb-3">
+                                <span  style="color:red"> *</span>
                                 <x-inputbox type="text" labelName="Salary range" placeholderName="Enter Salary range" varName="salary" dbvalue=""/>
                             </div>
                             <div class="col-md-6 col-12 mb-3">
@@ -66,11 +73,17 @@
                                 <x-inputbox type="text" labelName="Country" placeholderName="Enter Country" varName="country" dbvalue=""/>
                             </div>
                             <div class="col-md-6 col-12 mb-3">
-                                <x-inputbox type="number" labelName="Vacancy" placeholderName="Enter No of Vacancy" varName="position" dbvalue=""/>
+                                <x-inputbox type="number" labelName="Vacancy" placeholderName="Enter No of Vacancy" varName="vacancy" dbvalue=""/>
                             </div>
                             <div class="col-12 mb-3">
+                                <span  style="color:red"> *</span>
                                 <label for="jobDescription">Job Description</label>
-                                <textarea id="jobDescription" rows="5" name="job_description"></textarea>
+                                <textarea id="jobDescription" rows="5" name="job_description" class="@error('job_description') is-invalid @enderror"></textarea>
+                                @error('job_description')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                             <div class="col-12 mb-3">
                                 <label for="jobLocation">Job Location</label>
