@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Applicant;
 use App\Models\Employer;
 use App\Models\JobCategory;
 use App\Models\Jobs;
 use Database\Seeders\JobApplicationSeeder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class EmployerController extends Controller
 {
@@ -113,5 +115,12 @@ class EmployerController extends Controller
         return view('frontend.pages.employer.create-job-post',[
             'job_categories' => $job_categories,
         ]);
+    }
+    public function resumedownload($id){
+
+        return response()->download(Applicant::findOrFail($id)->resume_file);
+    }
+    public function coverdownload($id){
+        return response()->download(Applicant::findOrFail($id)->cover_letter);
     }
 }

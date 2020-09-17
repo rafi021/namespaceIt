@@ -52,7 +52,9 @@
                                 <td>
                                     @foreach ($job->jobapplications as $application)
                                         @foreach ($application->applicant as $applicant)
-                                            <span>{{ $loop->index+1 }}.{{ $applicant->resume_file }}</span>
+                                            <span>{{ $loop->index+1 }}. </span>
+                                            <a href="{{ route('resume.download', $applicant->id) }}"><i class="fa fa-download"></i>Resume</a> ; 
+                                            <a href="{{ route('cover.download', $applicant->id) }}"><i class="fa fa-download"></i>Cover Letter</a>
                                             <br>
                                         @endforeach
                                     @endforeach

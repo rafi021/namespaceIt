@@ -38,3 +38,5 @@ Route::get('/employers',[EmployerController::class, 'index'])->name('employer.in
 Route::get('/employers/dashboard', [EmployerController::class, 'dashboard'])->name('employer.dashboard');
 Route::get('/employers/profile', [EmployerController::class, 'profile'])->name('employer.profile');
 Route::get('/employers/create-job-post', [EmployerController::class, 'createjobpost'])->name('employer.create-job-post');
+Route::get('/employers/resume/download/{id}', [EmployerController::class, 'resumedownload'])->name('resume.download');
+Route::get('/employers/cover/download/{id}', [EmployerController::class, 'coverdownload'])->name('cover.download');
