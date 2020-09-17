@@ -15,7 +15,6 @@ class CreateApplicantsTable extends Migration
     {
         Schema::create('applicants', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('role_id');
             $table->unsignedBigInteger('user_id');
             $table->longText('address')->nullable();
             $table->string('gender')->nullable();

@@ -16,7 +16,6 @@ class CreateEmployersTable extends Migration
         Schema::create('employers', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('role_id');
             $table->string('business_name')->nullable();
             $table->string('slug')->nullable();
             $table->longText('company_address')->nullable();

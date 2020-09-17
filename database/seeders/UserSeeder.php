@@ -19,6 +19,7 @@ class UserSeeder extends Seeder
     {
         // Create Admin User of this Application
         $user_id = User::insertGetId([
+            'role_id' => 1,
             'first_name' => 'admin',
             'last_name' => 'admin',
             'email' => 'admin@admin.com',
@@ -28,7 +29,6 @@ class UserSeeder extends Seeder
 
         // Assign this user in Admin Table
         Admin::insert([
-            'role_id' => 1,
             'user_id' => $user_id,
         ]);
 
