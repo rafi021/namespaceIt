@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employer;
+use App\Models\JobCategory;
 use Illuminate\Http\Request;
 
 class EmployerController extends Controller
 {
+    public function __construct()
+    {
+        return $this->middleware('auth')->except('index', 'show');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -84,5 +89,23 @@ class EmployerController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function dashboard()
+    {
+        return view('frontend.pages.employer.dashboard');
+    }
+
+    public function profile()
+    {
+        return view('frontend.pages.employer.profile');
+    }
+
+    public function createjobpost()
+    {
+        $job_categories = JobCategory::all();
+        return view('frontend.pages.employer.create-job-post',[
+            'job_categories' => $job_categories,
+        ]);
     }
 }

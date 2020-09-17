@@ -31,7 +31,7 @@
             <!-- Job List Wrap Start -->
 
             <div class="text-center mt-4 mt-lg-5">
-                <a href="job-list.html" class="btn btn-primary">View All Jobs</a>
+                <a href="{{ route('job.index') }}" class="btn btn-primary">View All Jobs</a>
             </div>
 
         </div>

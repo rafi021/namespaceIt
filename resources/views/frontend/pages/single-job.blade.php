@@ -3,8 +3,10 @@
 
     <!-- Page Heading Section Start -->
     @include('frontend.panel.breadcrumb', [
-        'menu' => 'Jobs',
-        'submenu' => "$jobs->position"
+        'title' => $jobs->position,
+        'menu' => "Jobs",
+        'menuLink' => "route('job.index')",
+        'submenu' => "$jobs->job_title"
     ])
     <!-- Page Heading Section End -->
 <!-- Recent Jobs Start -->

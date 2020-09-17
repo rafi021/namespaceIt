@@ -12,7 +12,7 @@ class FrontendController extends Controller
 {
     public function index()
     {
-        $job_posts = Jobs::with(['employer'])->get();
+        $job_posts = Jobs::with(['employer'])->get()->take(10);
         $all_employer = Employer::withCount(['jobs'])->get();
         return view('frontend.pages.index',[
             'job_posts' => $job_posts,

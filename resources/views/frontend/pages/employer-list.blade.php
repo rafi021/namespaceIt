@@ -3,7 +3,9 @@
 
     <!-- Page Heading Section Start -->
     @include('frontend.panel.breadcrumb', [
-        'menu' => 'Companies',
+        'title' => 'Browse Companies',
+        'menu' => "Companines",
+        'menuLink' => "route('employer.index')",
         'submenu' => ""
     ])
     <!-- Page Heading Section End -->

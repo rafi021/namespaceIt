@@ -3,8 +3,10 @@
 
     <!-- Page Heading Section Start -->
     @include('frontend.panel.breadcrumb', [
-        'menu' => 'Companies',
-        'submenu' => "$employer->business_name"
+        'title' => $employer->business_name,
+        'menu' => "Companines",
+        'menuLink' => "route('employer.index')",
+        'submenu' => $employer->business_name
     ])
     <!-- Page Heading Section End -->
     <!-- Company List Start -->

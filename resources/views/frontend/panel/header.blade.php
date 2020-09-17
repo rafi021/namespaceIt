@@ -36,7 +36,7 @@
                     </li>
                     <li><a href="{{ route('employer.index') }}">Company</a>
                     </li>
-                    <li><a href="#">Pages</a>
+                    {{-- <li><a href="#">Pages</a>
                         <ul class="sub-menu">
                             <li><a href="about-us.html">About Us</a></li>
                             <li><a href="faq.html">FAQ'S</a></li>
@@ -50,11 +50,13 @@
                             <li><a href="blog-single.html">Blog Single</a></li>
                         </ul>
                     </li>
-                    <li><a href="contact.html">Contact us</a></li>
+                    <li><a href="contact.html">Contact us</a></li> --}}
                     @auth
                     <li><a href="#">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</a>
                         <ul class="sub-menu">
-                            <li><a href="{{ route('employer.index') }}">Profile</a></li>
+                            <li><a href="{{ route('employer.dashboard') }}">Dashboard</a></li>
+                            <li><a href="{{ route('employer.profile') }}">Profile</a></li>
+                            <li><a href="{{ route('employer.create-job-post') }}">Create Job POST</a></li>
                             <li>
                                 <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> {{ __('Logout') }}</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
