@@ -9,21 +9,25 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Jobs extends Model
 {
     use HasFactory,SoftDeletes;
-    protected $fillable = [
-        'user_id',
-        'employer_id',
-        'category_id',
-        'job_title',
-        'job_slug',
-        'job_description',
-        'position',
-        'salary',
-        'location',
-        'country',
-        'job_type',
-        'status',
-        'last_date',
-    ];
+    // protected $fillable = [
+    //     'user_id',
+    //     'employer_id',
+    //     'category_id',
+    //     'job_title',
+    //     'job_slug',
+    //     'job_description',
+    //     'education_required',
+    //     'experience_required',
+    //     'position',
+    //     'vacancy',
+    //     'salary',
+    //     'location',
+    //     'country',
+    //     'job_type',
+    //     'status',
+    //     'last_date',
+    // ];
+    protected $guarded = []; // Time Save
 
     // One to Many Relationship inverse
     public function employer(){

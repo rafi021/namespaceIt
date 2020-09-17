@@ -30,6 +30,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 // Jobs Routes
 Route::get('/job-list',[JobsController::class, 'index'])->name('job.index');
 Route::get('/job/{jobs}',[JobsController::class, 'show'])->name('job.show');
+Route::post('/job/store', [JobsController::class, 'store'])->name('jobs.store');
 
 // Employer Routes
 Route::get('/employer/{employer}',[EmployerController::class, 'show'])->name('employer.show');
