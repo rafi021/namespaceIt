@@ -32,6 +32,26 @@ class UserSeeder extends Seeder
             'user_id' => $user_id,
         ]);
 
+
+        // Special Employer Login Credential
+        User::insertGetId([
+            'role_id' => 2,
+            'first_name' => 'Job',
+            'last_name' => 'Employer',
+            'email' => 'employer@login.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('1234'),
+        ]);
+        // Special Applicant Login Credential
+        User::insertGetId([
+            'role_id' => 3,
+            'first_name' => 'Job',
+            'last_name' => 'Applicant',
+            'email' => 'applicant@login.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('1234'),
+        ]);
+
         $seedCount = (int) $this->command->ask('How many seeds would you like to generate ?', 20);
         UserFactory::times($seedCount)->create();
     }
