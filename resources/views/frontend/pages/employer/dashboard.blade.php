@@ -35,28 +35,31 @@
                                 <td>{{ $job->position }}</td>
                                 <td>
                                     @foreach ($job->jobapplications as $application)
-                                    @foreach ($application->users as $user)
-                                        <span>{{ $loop->index+1 }}. {{ $user->first_name.' '. $user->last_name }}</span>
-                                        <br>
-                                    @endforeach
+                                        @foreach ($application->users as $user)
+                                            <li class="">{{ $user->first_name.' '. $user->last_name }}</li>                                
+                                        @endforeach
                                     @endforeach
                                 </td>
                                 <td>
                                     @foreach ($job->jobapplications as $application)
                                         @foreach ($application->users as $user)
-                                            <span>{{ $loop->index+1 }}. {{ $user->email }}</span>
-                                            <br>
+                                            <li>{{ $user->email }}</li>
                                         @endforeach
                                     @endforeach
                                 </td>
                                 <td>
                                     @foreach ($job->jobapplications as $application)
+                                    <ul class="list-group">
                                         @foreach ($application->applicant as $applicant)
-                                            <span>{{ $loop->index+1 }}. </span>
-                                            <a href="{{ route('resume.download', $applicant->id) }}"><i class="fa fa-download"></i>Resume</a> ; 
-                                            <a href="{{ route('cover.download', $applicant->id) }}"><i class="fa fa-download"></i>Cover Letter</a>
-                                            <br>
+                                        <a class="list-group-item list-group-item-action" href="{{ route('resume.download', $applicant->id) }}">
+                                            <i class="fa fa-download"></i>Resume
+                                        </a>
+                                        <a class="list-group-item list-group-item-action" href="{{ route('cover.download', $applicant->id) }}">
+                                            <i class="fa fa-download"></i>Cover Letter
+                                        </a>
+                                        <br>
                                         @endforeach
+                                    </ul>
                                     @endforeach
                                 </td>
                             </tr>

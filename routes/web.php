@@ -40,3 +40,7 @@ Route::get('/employers/profile', [EmployerController::class, 'profile'])->name('
 Route::get('/employers/create-job-post', [EmployerController::class, 'createjobpost'])->name('employer.create-job-post');
 Route::get('/employers/resume/download/{id}', [EmployerController::class, 'resumedownload'])->name('resume.download');
 Route::get('/employers/cover/download/{id}', [EmployerController::class, 'coverdownload'])->name('cover.download');
+
+// Applicant Routes
+Route::get('/applicants/dashboard', [EmployerController::class, 'dashboard'])->name('applicant.dashboard');
+Route::get('/applicants/profile', [EmployerController::class, 'profile'])->name('applicant.profile');

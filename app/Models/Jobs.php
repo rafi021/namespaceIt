@@ -40,11 +40,13 @@ class Jobs extends Model
         return 'job_slug';
     }
 
+    // Every job has been applied by many applicant user
     public function users()
     {
         return $this->hasMany(User::class);
     }
 
+    // Every job has many job application
     public function jobapplications()
     {
         return $this->hasMany(JobApplication::class, 'jobs_id', 'id');
