@@ -31,7 +31,7 @@ class ApplicantFactory extends Factory
             'experience' => $this->faker->numberBetween(1,10),
             'cover_letter' => 'applicant/resume_file/cover_letter.pdf',
             'resume_file' => 'applicant/resume_file/3.pdf',
-            'profile_photo' => 'avater/profile_photo.jpg',
+            'profile_photo' => 'default_photo.jpg',
             'created_at' => Carbon::now(),
         ];
     }

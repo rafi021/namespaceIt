@@ -117,7 +117,6 @@ class EmployerController extends Controller
         ]);
     }
     public function resumedownload($id){
-
         return response()->download(Applicant::findOrFail($id)->resume_file);
     }
     public function coverdownload($id){

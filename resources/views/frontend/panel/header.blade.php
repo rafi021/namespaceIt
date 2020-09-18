@@ -71,7 +71,7 @@
                     <li><a href="#">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</a>
                         <ul class="sub-menu">
                             <li><a href="{{ route('applicant.dashboard') }}">Dashboard</a></li>
-                            <li><a href="{{ route('applicant.profile') }}">Profile</a></li>
+                            <li><a href="{{ route('applicant.profile') }}">Profile Update</a></li>
                             <li>
                                 <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> {{ __('Logout') }}</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

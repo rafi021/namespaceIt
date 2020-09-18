@@ -20,4 +20,9 @@ class Applicant extends Model
         'resume_file',
         'profile_photo',
     ];
+    // Every Applicant can have some skills  
+    public function skills()
+    {
+        return $this->hasMany(Skills::class, 'applicant_id', 'id');
+    }
 }
