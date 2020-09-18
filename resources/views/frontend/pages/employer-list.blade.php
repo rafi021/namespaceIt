@@ -22,7 +22,7 @@
                         <!-- Company List Start -->
                         <div class="col-xl-4 col-lg-6 col-md-4 col-sm-6 col-12">
                             <a href="{{ route('employer.show',$employer) }}" class="company-list">
-                                <span class="company-logo"><img src="{{ asset('/') }}{{ $employer->logo }}" alt="Company Logo" width="80"></span>
+                                <span class="company-logo"><img src="{{ asset('logo') }}/{{ $employer->logo }}" alt="Company Logo" width="80"></span>
                                 <h6 class="title">{{ $employer->business_name }}</h6>
                                 <span class="open-job">
                                     <span class="badge {{ $employer->jobs_count ? "badge-success":"badge-danger" }} badge-lg">{{ $employer->jobs_count }} </span>
