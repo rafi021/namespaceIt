@@ -45,7 +45,7 @@
                         @foreach ($employer->jobs as $job)
                         <a href="{{ route('job.show', $job) }}" class="job-list">
                             <div class="company-logo col-auto">
-                                <img src="{{ asset('/') }}{{ $employer->logo }}" alt="Company Logo" width="80">
+                                <img src="{{ asset('logo') }}/{{ $employer->logo }}" alt="Company Logo" width="80">
                             </div>
                             <div class="salary-type col-auto order-sm-3">
                                 <span class="salary-range">Tk {{ $job->salary }}</span>
@@ -73,7 +73,7 @@
                         <div class="sidebar-widget">
                             <div class="inner">
                                 <div class="sidebar-company">
-                                    <span class="company-logo"><img src="{{ asset('/') }}{{ $employer->cover_photo }}" alt="company-1"></span>
+                                    <span class="company-logo"><img src="{{ asset('cover_photo') }}/{{ $employer->cover_photo }}" alt="company-1"></span>
                                     <h6 class="title">{{ $employer->business_name }}</h6>
                                     <ul>
                                         <li><strong>Categories:</strong> <a href="#">Website</a>, <a href="#">Software</a></li>

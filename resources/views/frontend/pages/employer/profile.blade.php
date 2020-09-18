@@ -12,10 +12,10 @@
     <div class="section section-padding">
         <div class="container">
             <div class="row">
-                {{-- Laravel 7 Blade Component Feature --}}
-                <x-alert type="success" :message="session('profile_status')"/>
 
                 <div class="create-job-form col-lg-10 mx-auto">
+                    {{-- Laravel 7 Blade Component Feature --}}
+                    <x-alert :type="session('type')" :message="session('profile_status')"/>
                     <form action="{{ route('employer.update', $employer) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')

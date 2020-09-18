@@ -83,14 +83,26 @@ class EmployerController extends Controller
      */
     public function update(Request $request, Employer $employer)
     {
-        dd($request->all());
-        // First process any logo image file 
-        $this->image_upload($request,$employer,'logo','public/logo');
+        // dd($request->all());
+        // First update the model with other request info
+        $employer->update([
+            'business_name' => $request->input('business_name'),
+            'company_address' => $request->input('company_address'),
+            'phone' => $request->input('phone'),
+            'website' => $request->input('website'),
+            'description' => $request->input('description'),
+        ]);
+        // Then process any logo image file 
+        $this->image_upload($request,$employer,'logo','logo','public/logo/');
         // Then process any cover_photo image file 
-        $this->image_upload($request,$employer,'cover_photo','public/cover_photo');
+        $this->image_upload($request,$employer,'cover_photo','cover_photo','public/cover_photo/');
+        return back()->with([
+                'type' => 'success',
+                'profile_status' => 'Successfully updated profile!!!',
+            ]);
     }
 
-    public function image_upload($request, $model_instance, $default_file_name, $store_path){
+    public function image_upload($request, $model_instance, $model_field,$default_file_name, $store_path){
         // First Check if photo uploaded or not
         if($request->hasFile($default_file_name))
         {
@@ -100,10 +112,11 @@ class EmployerController extends Controller
         }
         // Then process the old profile photo
         if ($request->hasFile($default_file_name)) {
-            if ($model_instance->logo != 'logo.jpg') {
+            //dd($request->file($default_file_name), $model_instance[$model_field], $default_file_name, $store_path);
+            if ($model_instance[$model_field] != $default_file_name.'.jpg') {
                 //delete old photo
                 $photo_location = $store_path;
-                $old_photo_location = $photo_location . $model_instance->logo;
+                $old_photo_location = $photo_location . $model_instance[$model_field];
                 unlink(base_path($old_photo_location));
             }
             // Finally upload image
@@ -116,17 +129,7 @@ class EmployerController extends Controller
             $check =  $model_instance->update([
                 $default_file_name => $new_photo_name,
             ]);
-            if($check)
-            return redirect()->back()->with([
-                'type' => 'success',
-                'profile_status' => 'Profile Photo Updated Successfully!!!',
-            ]);
-            // else thorw error flash message
-        } else {
-            return back()->with([
-                'type' => 'danger',
-                'profile_status' => 'Please upload a valid image file',
-            ]);
+            return $check; 
         }
     }
 
