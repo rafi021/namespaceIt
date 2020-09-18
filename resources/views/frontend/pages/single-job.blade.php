@@ -20,7 +20,7 @@
                     <div class="job-details-head row mx-0">
                         <div class="company-logo col-auto">
                             <a href="company-single.html">
-                                <img src="{{ asset('/') }}{{ $jobs->employer->logo }}" alt="Company Logo" width="80">
+                                <img src="{{ asset('logo') }}/{{ $jobs->employer->logo }}" alt="Company Logo" width="80">
                             </a>
                         </div>
                         <div class="salary-type col-auto order-sm-3">
@@ -85,11 +85,16 @@
                     <div class="sidebar-widget">
                         <div class="inner">
                             <div class="row m-n2">
+                                <x-alert :type="session('type')" :message="session('login_status')"/>
                                 <div class="col-xl-auto col-lg-12 col-sm-auto col-12 p-2">
-                                    <a href="#" class="d-block btn btn-outline-secondary"><i class="fa fa-heart-o mr-1"></i> Save Job</a>
+                                    <a href="#" class="d-block btn btn-group-sm btn-outline-secondary"><i class="fa fa-heart-o mr-1"></i> Save Job</a>
                                 </div>
                                 <div class="col-xl-auto col-lg-12 col-sm-auto col-12 p-2">
-                                    <a href="#" class="d-block btn btn-primary">Apply Now</a>
+                                    @auth
+                                    <a href="{{ route('application.sbumit', ['jobs_id'=>$jobs->id]) }}" class="d-block btn-group-sm btn btn-primary">Apply Now</a>
+                                    @else 
+                                    <a href="#" class="d-block btn btn-group-sm btn-warning disabled">Apply Now (Login)</a>
+                                    @endauth
                                 </div>
                             </div>
                         </div>
@@ -99,15 +104,16 @@
                     <!-- Sidebar (Job Overview) Start -->
                     <div class="sidebar-widget">
                         <div class="inner">
+                            <x-alert :type="session('type')" :message="session('profile_status')"/>
                             <h6 class="title">Job Overview</h6>
                             <ul class="job-overview list-unstyled">
                                 <li><strong>Published on:</strong> {{ $jobs->created_at->format('M d,Y') }}</li>
-                                <li><strong>Vacancy:</strong> 02</li>
+                                <li><strong>Vacancy:</strong>{{ $jobs->vacancy }}</li>
                                 <li><strong>Employment Status:</strong> {{ $jobs->job_type }}</li>
-                                <li><strong>Experience:</strong> 2 to 3 year(s)</li>
+                                <li><strong>Experience:</strong> {{ $jobs->experience_required }}</li>
                                 <li><strong>Job Location:</strong>{{ $jobs->location }}</li>
                                 <li><strong>Salary:</strong> TK {{ $jobs->salary }}</li>
-                                <li><strong>Gender:</strong> Any</li>
+                                <li><strong>Gender:</strong> {{ $jobs->gender }}</li>
                                 <li><strong>Application Deadline:</strong>{{ $jobs->last_date }}</li>
                             </ul>
                         </div>

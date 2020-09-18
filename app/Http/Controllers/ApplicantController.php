@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Applicant;
 use App\Models\JobApplication;
+use App\Models\Jobs;
 use App\Models\Skills;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -99,7 +100,7 @@ class ApplicantController extends Controller
             $applicant->update([
                 'cover_letter' => $cover_letter_path,
             ]);
-           
+        
         }
         if($request->hasFile('resume_file')){
             $resume_file_file = $request->file('resume_file');
@@ -154,7 +155,7 @@ class ApplicantController extends Controller
 
     public function dashboard()
     {  
-        $job_posts = JobApplication::where('user_id', Auth::id())->with(['job', 'employer', 'applicant'])->get();
+        $job_posts = JobApplication::where('user_id', Auth::id())->with(['job','employer','applicant'])->get();
         return view('frontend.pages.applicant.dashboard',[
             'job_posts' => $job_posts,
         ]);
@@ -208,6 +209,46 @@ class ApplicantController extends Controller
                 'type' => 'danger',
                 'profile_status' => 'Please upload a valid image file',
             ]);
+        }
+    }
+
+    public function applicationsubmit($jobs_id)
+    {
+        if(!Auth::check()){
+            return redirect()->back()->with([
+                'type' => 'danger',
+                'login_status' => 'Please login to apply Job',
+            ]);
+        }else{
+            $user_id = Auth::id();
+            // First check if he has been uploaded his resume or not
+            $resume_check = Applicant::where('user_id', $user_id)->pluck('resume_file')->first();
+            if($resume_check)
+            {
+                $employer_id = Jobs::findOrFail($jobs_id)->employer_id;
+                $applicant_id = Applicant::where('user_id', $user_id)->first()->id;
+
+                //dd($employer_id, $applicant_id);
+                // If so the proceed to apply
+                JobApplication::create([
+                    'jobs_id' => $jobs_id,
+                    'user_id' => $user_id,
+                    'employer_id' => $employer_id,
+                    'applicant_id' => $applicant_id,
+                ]);
+                return redirect()->back()->with([
+                    'type' => 'success',
+                    'profile_status' => 'You have successfully applied for this job!!!',
+                ]);
+            }
+            else{
+                // or else proceed him to profile update page with flash message of resume upload
+                return redirect()->route('applicant.profile')->with([
+                    'type' => 'danger',
+                    'profile_status' => 'Please Update you profile with Resume file',
+                ]);
+            }
+            
         }
     }
 }

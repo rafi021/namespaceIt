@@ -11,6 +11,7 @@
     <div class="section section-padding">
         <div class="container">
             <div class="row">
+                <x-alert :type="session('type')" :message="session('profile_status')"/>
                 <div class="col-lg-10 mx-auto" >
                     <div class="media">
                         <form action="{{ route('applicant.photoupdate', $applicant_info) }}" method="POST" enctype="multipart/form-data" id="profile-photo-upload">
@@ -36,8 +37,6 @@
                 </div>
             </div>
             <div class="row">
-                {{-- Laravel 7 Blade Component Feature --}}
-                <x-alert type="success" :message="session('profile_status')"/>
                 <div class="create-job-form col-lg-10 mx-auto">
                     <form action="{{ route('applicant.update', $applicant_info) }}" method="POST" enctype="multipart/form-data">
                         @csrf

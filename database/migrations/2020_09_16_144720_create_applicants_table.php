@@ -21,7 +21,7 @@ class CreateApplicantsTable extends Migration
             $table->string('experience')->nullable();
             $table->string('cover_letter')->nullable();
             $table->string('resume_file')->nullable();
-            $table->string('profile_photo')->nullable();
+            $table->string('profile_photo')->default('default_photo.jpg');
             $table->timestamps();
             $table->softDeletes();
         });

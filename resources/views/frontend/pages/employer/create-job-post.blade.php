@@ -78,7 +78,7 @@
                             <div class="col-12 mb-3">
                                 <span  style="color:red"> *</span>
                                 <label for="jobDescription">Job Description</label>
-                                <textarea id="jobDescription" rows="5" name="job_description" class="@error('job_description') is-invalid @enderror"></textarea>
+                                <textarea id="jobDescription" rows="5" name="job_description" class="@error('job_description') is-invalid @enderror">{{ old('job_description') }}</textarea>
                                 @error('job_description')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -87,7 +87,7 @@
                             </div>
                             <div class="col-12 mb-3">
                                 <label for="jobLocation">Job Location</label>
-                                <textarea id="jobLocation" rows="5" name="location"></textarea>
+                                <textarea id="jobLocation" rows="5" name="location">{{ old('location') }}</textarea>
                             </div>
                             <div class="col-12 mb-3">
                                 <button type="submit" class="btn btn-primary px-5">Post Job</button>

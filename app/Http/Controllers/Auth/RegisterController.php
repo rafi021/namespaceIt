@@ -74,6 +74,7 @@ class RegisterController extends Controller
             'last_name' => $data['last_name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'role_id' => $data['role_id'],
         ]);
 
         $role_id = $data['role_id'];
@@ -82,13 +83,13 @@ class RegisterController extends Controller
             // If User is an Employer then fill the employer table 
             Employer::create([
                 'user_id' => $user_id,
-                'role_id' => $role_id,
+                'logo' => 'logo.jpg',
+                'cover_photo' => 'cover_photo.jpg',
             ]);
         }elseif ($role_id == 3) {
             // If User is an Applicant then fill the applicant table
             Applicant::create([
                 'user_id' => $user_id,
-                'role_id' => $role_id,
             ]);
         }
         // finally return user info

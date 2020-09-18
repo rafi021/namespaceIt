@@ -36,7 +36,7 @@
                             <!-- Job List Start -->
                         <a href="{{ route('job.show', $job) }}" class="job-list">
                             <div class="company-logo col-auto">
-                                <img src="{{ asset('/') }}{{ $job->employer->logo }}" alt="Company Logo" width="80">
+                                <img src="{{ asset('logo') }}/{{ $job->employer->logo }}" alt="Company Logo" width="80">
                             </div>
                             <div class="salary-type col-auto order-sm-3">
                                 <span class="salary-range">Tk {{ $job->salary }}</span>

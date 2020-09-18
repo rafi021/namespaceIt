@@ -34,6 +34,6 @@ class JobApplication extends Model
 
     // Every Job application belongs to a employer 
     public function employer(){
-        return $this->belongsTo(Employer::class);
+        return $this->belongsTo(Employer::class, 'employer_id', 'id');
     }
 }

@@ -32,8 +32,8 @@ class EmployerFactory extends Factory
             'company_address' => $this->faker->address,
             'phone' => $this->faker->phoneNumber,
             'website' => $this->faker->domainName,
-            'logo' => 'logo/logo.jpg',
-            'cover_photo' => 'cover_photo/cover_photo.jpg',
+            'logo' => 'logo.jpg',
+            'cover_photo' => 'cover_photo.jpg',
             'description' => $this->faker->paragraph(rand(2,10)),
             'created_at' => Carbon::now(),
         ];

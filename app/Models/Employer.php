@@ -30,6 +30,10 @@ class Employer extends Model
     // route show slug
     public function getRouteKeyName()
     {
-        return 'slug';
+        return 'id';
+    }
+
+    public function jobapplications(){
+        return $this->hasMany(JobApplication::class);
     }
 }

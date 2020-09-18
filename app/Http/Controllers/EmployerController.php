@@ -98,7 +98,7 @@ class EmployerController extends Controller
 
     public function dashboard()
     {  
-        $job_posts = Jobs::where('employer_id', Auth::user()->id)->latest()->with(['jobapplications'])->get();
+        $job_posts = Jobs::where('user_id', Auth::user()->id)->latest()->with(['jobapplications'])->get();
         return view('frontend.pages.employer.dashboard',[
             'job_posts' => $job_posts,
         ]);
@@ -117,9 +117,10 @@ class EmployerController extends Controller
         ]);
     }
     public function resumedownload($id){
-        return response()->download(Applicant::findOrFail($id)->resume_file);
+        //dd(Applicant::findOrFail($id)->resume_file);
+        return Storage::download(Applicant::findOrFail($id)->resume_file);
     }
     public function coverdownload($id){
-        return response()->download(Applicant::findOrFail($id)->cover_letter);
+        return Storage::download(Applicant::findOrFail($id)->cover_letter);
     }
 }

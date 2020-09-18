@@ -53,8 +53,8 @@ class UserSeeder extends Seeder
             'company_address' => "ABC Company, Dhaka, BD",
             'phone' => "02-555-5555",
             'website' => "www.abc.com",
-            'logo' => 'logo/logo.jpg',
-            'cover_photo' => 'cover_photo/cover_photo.jpg',
+            'logo' => 'logo.jpg',
+            'cover_photo' => 'cover_photo.jpg',
             'description' => 'its a demo company',
             'created_at' => Carbon::now(),
         ]);
@@ -73,13 +73,11 @@ class UserSeeder extends Seeder
             'address' => 'Dhaka, BD',
             'gender' => 'Male',
             'experience' => '10',
-            'cover_letter' => 'applicant/resume_file/cover_letter.pdf',
-            'resume_file' => 'applicant/resume_file/3.pdf',
-            'profile_photo' => 'avater/profile_photo.jpg',
+            'profile_photo' => 'default_photo.jpg',
             'created_at' => Carbon::now(),
         ]);
 
-        $seedCount = (int) $this->command->ask('How many seeds would you like to generate ?', 20);
-        UserFactory::times($seedCount)->create();
+        // $seedCount = (int) $this->command->ask('How many seeds would you like to generate ?', 20);
+        // UserFactory::times($seedCount)->create();
     }
 }

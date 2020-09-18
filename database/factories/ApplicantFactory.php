@@ -29,8 +29,8 @@ class ApplicantFactory extends Factory
             'address' => $this->faker->address,
             'gender' => $this->faker->title($gender ='male'|'female'),
             'experience' => $this->faker->numberBetween(1,10),
-            'cover_letter' => 'applicant/resume_file/cover_letter.pdf',
-            'resume_file' => 'applicant/resume_file/3.pdf',
+            'cover_letter' => NULL,
+            'resume_file' => NULL,
             'profile_photo' => 'default_photo.jpg',
             'created_at' => Carbon::now(),
         ];

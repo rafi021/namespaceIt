@@ -52,8 +52,4 @@ class Jobs extends Model
         return $this->hasMany(JobApplication::class, 'jobs_id', 'id');
     }
 
-    
-
-
-
 }

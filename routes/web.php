@@ -47,3 +47,4 @@ Route::get('/applicants/dashboard', [ApplicantController::class, 'dashboard'])->
 Route::get('/applicants/profile', [ApplicantController::class, 'profile'])->name('applicant.profile');
 Route::post('/applicants/profile/photo/update/{applicant}', [ApplicantController::class, 'photoupdate'])->name('applicant.photoupdate');
 Route::put('/applicants/update/{applicant}', [ApplicantController::class,'update'])->name('applicant.update');
+Route::get('/application/submit/{jobs_id}', [ApplicantController::class, 'applicationsubmit'])->name('application.sbumit');

@@ -21,8 +21,8 @@ class CreateEmployersTable extends Migration
             $table->longText('company_address')->nullable();
             $table->string('phone')->nullable();
             $table->longText('website')->nullable();
-            $table->string('logo')->nullable();
-            $table->string('cover_photo')->nullable();
+            $table->string('logo')->default('logo.jpg');
+            $table->string('cover_photo')->default('cover_photo.jpg');
             $table->longText('description')->nullable();
             $table->timestamps();
             $table->softDeletes();
