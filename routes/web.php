@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApplicantController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmployerController;
 use App\Http\Controllers\FrontendController;
@@ -42,5 +43,5 @@ Route::get('/employers/resume/download/{id}', [EmployerController::class, 'resum
 Route::get('/employers/cover/download/{id}', [EmployerController::class, 'coverdownload'])->name('cover.download');
 
 // Applicant Routes
-Route::get('/applicants/dashboard', [EmployerController::class, 'dashboard'])->name('applicant.dashboard');
-Route::get('/applicants/profile', [EmployerController::class, 'profile'])->name('applicant.profile');
+Route::get('/applicants/dashboard', [ApplicantController::class, 'dashboard'])->name('applicant.dashboard');
+Route::get('/applicants/profile', [ApplicantController::class, 'profile'])->name('applicant.profile');

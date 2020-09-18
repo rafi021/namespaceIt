@@ -43,7 +43,7 @@ class JobsFactory extends Factory
             'country' => $this->faker->country,
             'job_type' => 'Full time',
             'status' => rand(0,1),
-            'last_date' => $this->faker->dateTime('now'),
+            'last_date' => Carbon::now()->addWeeks(rand(0,10)),
             'created_at' => Carbon::now(),
         ];
     }

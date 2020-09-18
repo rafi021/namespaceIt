@@ -3,7 +3,7 @@
 
     <!-- Page Heading Section Start -->
     @include('frontend.panel.breadcrumb', [
-        'title' => 'Employer Profile',
+        'title' => 'Applicant Profile',
         'menu' => 'profile-edit',
         'menuLink' => "",
         'submenu' => "",

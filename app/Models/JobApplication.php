@@ -24,11 +24,16 @@ class JobApplication extends Model
 
     // Every Job Application is belongs to a Job Post
     public function job(){
-        return $this->belongsTo(Jobs::class);
+        return $this->belongsTo(Jobs::class, 'jobs_id', 'id');
     }
 
     // Every Job Application can have many applicants
     public function applicant(){
         return $this->hasMany(Applicant::class, 'id', 'applicant_id');
+    }
+
+    // Every Job application belongs to a employer 
+    public function employer(){
+        return $this->belongsTo(Employer::class);
     }
 }
