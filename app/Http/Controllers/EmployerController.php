@@ -10,6 +10,7 @@ use Database\Seeders\JobApplicationSeeder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Image;
 
 class EmployerController extends Controller
 {
@@ -80,9 +81,53 @@ class EmployerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Employer $employer)
     {
-        //
+        dd($request->all());
+        // First process any logo image file 
+        $this->image_upload($request,$employer,'logo','public/logo');
+        // Then process any cover_photo image file 
+        $this->image_upload($request,$employer,'cover_photo','public/cover_photo');
+    }
+
+    public function image_upload($request, $model_instance, $default_file_name, $store_path){
+        // First Check if photo uploaded or not
+        if($request->hasFile($default_file_name))
+        {
+            $request->validate([
+                $default_file_name => 'image|mimes:jpeg,jpg,png|max:2000'
+            ]);
+        }
+        // Then process the old profile photo
+        if ($request->hasFile($default_file_name)) {
+            if ($model_instance->logo != 'logo.jpg') {
+                //delete old photo
+                $photo_location = $store_path;
+                $old_photo_location = $photo_location . $model_instance->logo;
+                unlink(base_path($old_photo_location));
+            }
+            // Finally upload image
+            $photo_location = $store_path;
+            $uploaded_photo = $request->file($default_file_name);
+            $new_photo_name = $model_instance->id.'_'.$default_file_name.'.'.$uploaded_photo->getClientOriginalExtension();
+            $new_photo_location = $photo_location . $new_photo_name;
+            Image::make($uploaded_photo)->resize(600, 622)->save(base_path($new_photo_location), 40);
+            // check if successfull
+            $check =  $model_instance->update([
+                $default_file_name => $new_photo_name,
+            ]);
+            if($check)
+            return redirect()->back()->with([
+                'type' => 'success',
+                'profile_status' => 'Profile Photo Updated Successfully!!!',
+            ]);
+            // else thorw error flash message
+        } else {
+            return back()->with([
+                'type' => 'danger',
+                'profile_status' => 'Please upload a valid image file',
+            ]);
+        }
     }
 
     /**
@@ -106,7 +151,8 @@ class EmployerController extends Controller
 
     public function profile()
     {
-        return view('frontend.pages.employer.profile');
+        $employer = Employer::where('user_id', Auth::id())->first();
+        return view('frontend.pages.employer.profile', compact('employer'));
     }
 
     public function createjobpost()
