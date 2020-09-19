@@ -2,10 +2,10 @@ Please check the official laravel installation guide for server requirements bef
 
 Clone the repository
 
-git clone https://github.com/zoharyAnd/jobPortal-app-Laravel.git
+git clone https://github.com/rafi021/namespaceIt.git
 Switch to the repo folder
 
-cd jobPortal-app-Laravel
+cd namespaceIt
 Install all the dependencies using composer
 
 composer install
