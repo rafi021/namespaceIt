@@ -26,7 +26,7 @@ class EmployerFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => User::all()->random()->id,
+            'user_id' => User::where('role_id',2)->get()->random()->id,
             'business_name' => $title = $this->faker->company,
             'slug' => Str::slug($title).Str::random(5),
             'company_address' => $this->faker->address,

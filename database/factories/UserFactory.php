@@ -31,7 +31,7 @@ class UserFactory extends Factory
             'last_name' => $this->faker->lastName                                  ,
             'email' => $this->faker->unique()->safeEmail,
             'email_verified_at' => now(),
-            'password' => Hash::make('123456'),
+            'password' => Hash::make('1234'),
             'remember_token' => Str::random(10),
             'created_at' => Carbon::now(),
         ];

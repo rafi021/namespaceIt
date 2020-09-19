@@ -18,10 +18,10 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             JobCategorySeeder::class,
             UserSeeder::class,
-            //EmployerSeeder::class,
-            //JobsSeeder::class,
-            //ApplicantSeeder::class,
-            //JobApplicationSeeder::class,
+            EmployerSeeder::class,
+            JobsSeeder::class,
+            ApplicantSeeder::class,
+            JobApplicationSeeder::class,
         ]);
     }
 }

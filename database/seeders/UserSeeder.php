@@ -77,7 +77,7 @@ class UserSeeder extends Seeder
             'created_at' => Carbon::now(),
         ]);
 
-        // $seedCount = (int) $this->command->ask('How many seeds would you like to generate ?', 20);
-        // UserFactory::times($seedCount)->create();
+        $seedCount = (int) $this->command->ask('How many seeds would you like to generate ?', 20);
+        UserFactory::times($seedCount)->create();
     }
 }

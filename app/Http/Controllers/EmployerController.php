@@ -145,8 +145,8 @@ class EmployerController extends Controller
     }
 
     public function dashboard()
-    {  
-        $job_posts = Jobs::where('user_id', Auth::user()->id)->latest()->with(['jobapplications'])->get();
+    {   $employer_id = Employer::where('user_id', Auth::id())->first()->id;
+        $job_posts = Jobs::where('employer_id', $employer_id)->latest()->with(['jobapplications'])->get();
         return view('frontend.pages.employer.dashboard',[
             'job_posts' => $job_posts,
         ]);

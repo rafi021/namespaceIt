@@ -25,7 +25,7 @@ class ApplicantFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => User::all()->random()->id,
+            'user_id' => User::where('role_id', 3)->get()->random()->id,
             'address' => $this->faker->address,
             'gender' => $this->faker->title($gender ='male'|'female'),
             'experience' => $this->faker->numberBetween(1,10),

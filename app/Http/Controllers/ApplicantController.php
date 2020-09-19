@@ -228,18 +228,29 @@ class ApplicantController extends Controller
                 $employer_id = Jobs::findOrFail($jobs_id)->employer_id;
                 $applicant_id = Applicant::where('user_id', $user_id)->first()->id;
 
-                //dd($employer_id, $applicant_id);
-                // If so the proceed to apply
-                JobApplication::create([
+                // check if this user applied for the same position agian or not
+                $apply_check = JobApplication::where('applicant_id', $applicant_id)->where('jobs_id', $jobs_id)->get();
+
+                //dd($apply_check,$employer_id, $applicant_id);
+                if($apply_check == null){
+                    // fresh applicant ; fresh apply
+                    // If so the proceed to apply
+                    JobApplication::create([
                     'jobs_id' => $jobs_id,
                     'user_id' => $user_id,
                     'employer_id' => $employer_id,
                     'applicant_id' => $applicant_id,
-                ]);
-                return redirect()->back()->with([
-                    'type' => 'success',
-                    'profile_status' => 'You have successfully applied for this job!!!',
-                ]);
+                    ]);
+                    return redirect()->back()->with([
+                        'type' => 'success',
+                        'profile_status' => 'You have successfully applied for this job!!!',
+                    ]);
+                }else{
+                    return redirect()->back()->with([
+                        'type' => 'danger',
+                        'profile_status' => 'You have already applied for this position!!!',
+                    ]);
+                }
             }
             else{
                 // or else proceed him to profile update page with flash message of resume upload
